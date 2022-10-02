@@ -7,7 +7,7 @@ import java.net.MulticastSocket;
 import java.net.SocketTimeoutException;
 
 public class Receiver implements AutoCloseable {
-    private final int DEFAULT_BUFFER_SIZE = 256;
+    private static final int DEFAULT_BUFFER_SIZE = 256;
     private final MulticastSocket socket;
     private byte[] lastMessage;
     private String lastReceivedAddress;

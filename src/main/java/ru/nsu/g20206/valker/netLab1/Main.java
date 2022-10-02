@@ -6,21 +6,17 @@ import java.net.SocketTimeoutException;
 
 public class Main {
 
-    final static int DEFAULT_PORT = 8000;
-    final static int DEFAULT_DISCONNECT_TIME = 5000;
-    final static int DEFAULT_COOLDOWN_SEND_TIME = 1000;
-    final static int DEFAULT_RECEIVE_TIMEOUT = 1000;
-
-
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
             throw new IllegalArgumentException("IPv4 or IPv6 address expected");
         }
         String multicastIP = args[0];
         InetAddress multicastGroup = InetAddress.getByName(multicastIP);
-        ConnectionMonitor connectionMonitor = new ConnectionMonitor(DEFAULT_DISCONNECT_TIME);
-        try (Sender sender = new Sender(multicastGroup, DEFAULT_PORT, DEFAULT_COOLDOWN_SEND_TIME);
-             Receiver receiver = new Receiver(multicastGroup, DEFAULT_PORT, DEFAULT_RECEIVE_TIMEOUT)) {
+        ConnectionMonitor connectionMonitor = new ConnectionMonitor(ConstClass.DEFAULT_DISCONNECT_TIME);
+        Thread exitThread = new Thread(new TerminalThread());
+        exitThread.start();
+        try (Sender sender = new Sender(multicastGroup, ConstClass.DEFAULT_PORT, ConstClass.DEFAULT_COOLDOWN_SEND_TIME);
+             Receiver receiver = new Receiver(multicastGroup, ConstClass.DEFAULT_PORT, ConstClass.DEFAULT_RECEIVE_TIMEOUT)) {
             while (true) {
                 sender.sendMessage("Grisha privet");
                 try {
@@ -28,14 +24,13 @@ public class Main {
                     String receivedAddress = receiver.getLastReceivedAddress();
                     boolean wasConnected = connectionMonitor.putAddress(receivedAddress);
                     if (!wasConnected) {
-                        System.out.println(receivedAddress + " connected");
+                        System.out.println(receivedAddress + " connected " + "(Runned apps count: " + connectionMonitor.getConnectedIpCount() + ")");
                     }
                 } catch (SocketTimeoutException ignored) {
                 } finally {
-                    connectionMonitor.getDisconnected().forEach(
-                            (ipAddress) -> System.out.println(ipAddress + " disconnected")
-
-                    );
+                    for (String ipAddress : connectionMonitor.getDisconnected()) {
+                        System.out.println(ipAddress + " disconnected " + "(Runned apps count: " + connectionMonitor.getConnectedIpCount() + ")");
+                    }
                 }
             }
         }

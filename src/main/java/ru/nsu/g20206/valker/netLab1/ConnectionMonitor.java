@@ -9,6 +9,10 @@ public class ConnectionMonitor {
     private long disconnectTimeout;
     Map<String, Long> connectedIP = new HashMap<>();
 
+    public int getConnectedIpCount() {
+        return connectedIP.size();
+    }
+
     public ConnectionMonitor(long disconnectTimeout) {
         this.disconnectTimeout = disconnectTimeout;
     }
@@ -28,7 +32,9 @@ public class ConnectionMonitor {
                 disconnectedIP.add(address);
             }
         });
-        disconnectedIP.forEach((value) -> connectedIP.remove(value));
+        for (String str : disconnectedIP) {
+            connectedIP.remove(str);
+        }
         return disconnectedIP;
     }
 }
