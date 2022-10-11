@@ -1,12 +1,9 @@
 package ru.nsu.g20206.valker.netLab1;
 
 public class ConstClass {
-
-    final static int DEFAULT_PORT = 8000;
-    final static int DEFAULT_DISCONNECT_TIME = 5000;
-    final static int DEFAULT_COOLDOWN_SEND_TIME = 1000;
-    final static int DEFAULT_RECEIVE_TIMEOUT = 1000;
-    final static String EXIT_CODE = "exit";
-    final static int PROGRAM_TERMINATED_SUCCESSFULLY = 0;
-
+    public final static int FILE_INDEX = 0;
+    public final static int IP_ADDRESS_FOR_CLIENT = 1;
+    public final static int PORT_VAL_FOR_CLIENT = 2;
+    public final static int PORT_VAL_FOR_SERVER = 0;
+    public final static int CHUNK_LENGTH = 4092;
 }
