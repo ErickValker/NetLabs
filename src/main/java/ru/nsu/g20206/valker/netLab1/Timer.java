@@ -15,7 +15,7 @@ public class Timer implements Runnable {
     private long readBytesCount;
     private int clientId;
 
-    Timer(int clientId) {
+   public Timer(int clientId) {
         this.checkpointTime = 0;
         this.checkpointBytesCount = 0;
         this.readBytesTotalCount = 0;

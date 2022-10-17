@@ -19,7 +19,7 @@ public class ClientManager implements Runnable {
     private final int clientId;
     private long fileSize = 0;
 
-    ClientManager(Socket client, int id) {
+    public ClientManager(Socket client, int id) {
         this.clientId = id;
         clientSocket = client;
         buf = new byte[ConstClass.CHUNK_LENGTH];

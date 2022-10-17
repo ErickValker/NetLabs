@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.net.Socket;
 
-class Client {
+public class Client {
     private static Logger log = LoggerFactory.getLogger(Client.class);
 
     public static void main(String[] args) {
