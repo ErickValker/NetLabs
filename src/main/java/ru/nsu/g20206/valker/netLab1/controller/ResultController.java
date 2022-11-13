@@ -5,13 +5,14 @@ import javafx.stage.Stage;
 import ru.nsu.g20206.valker.netLab1.model.PlaceConfig;
 import ru.nsu.g20206.valker.netLab1.view.ResultUI;
 
-import java.util.Vector;
+
+import java.util.ArrayList;
 
 import static ru.nsu.g20206.valker.netLab1.model.ConstClass.*;
 
 public class ResultController {
 
-    public void drawResult(Stage stage, PlaceConfig weatherInPlace, Vector<PlaceConfig> localPlacesInfo) {
+    public void drawResult(Stage stage, PlaceConfig weatherInPlace, ArrayList<PlaceConfig> localPlacesInfo) {
         String str = checkWeather(weatherInPlace.getWeather());
         ResultUI resultUI = new ResultUI();
         resultUI.start(stage);

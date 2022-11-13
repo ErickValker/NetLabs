@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import ru.nsu.g20206.valker.netLab1.model.PlaceConfig;
 
 import java.io.InputStream;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import static ru.nsu.g20206.valker.netLab1.model.ConstClass.*;
 
@@ -56,7 +56,7 @@ public class ResultUI extends Application {
         pane.getChildren().add(text);
     }
 
-    public void drawPlaces(Vector<PlaceConfig> localPlacesInfo) {
+    public void drawPlaces(ArrayList<PlaceConfig> localPlacesInfo) {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setPrefViewportHeight(500);
         scrollPane.setPrefViewportWidth(650);

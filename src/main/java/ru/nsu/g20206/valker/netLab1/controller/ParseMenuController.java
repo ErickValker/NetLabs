@@ -11,27 +11,27 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 
-import ru.nsu.g20206.valker.netLab1.model.Parse;
+import ru.nsu.g20206.valker.netLab1.model.ParseManager;
 import ru.nsu.g20206.valker.netLab1.model.PlaceConfig;
 import ru.nsu.g20206.valker.netLab1.view.ParseMenuUI;
 
 import java.util.Objects;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class ParseMenuController {
 
     private static Stage stage;
-    private Parse parserOfLocation = new Parse();
-    private Vector<PlaceConfig> places;
+    private ParseManager parserOfLocation = new ParseManager();
+    private ArrayList<PlaceConfig> places;
     private ParseMenuUI parseMenuUI;
     private PlaceConfig weatherInPlace;
-    private Vector<PlaceConfig> localPlacesInfo;
+    private ArrayList<PlaceConfig> localPlacesInfo;
 
     public void setWeatherInPlace(PlaceConfig weatherInPlace) {
         this.weatherInPlace = weatherInPlace;
     }
 
-    public void setLocalPlacesInfo(Vector<PlaceConfig> localPlacesInfo) {
+    public void setLocalPlacesInfo(ArrayList<PlaceConfig> localPlacesInfo) {
         this.localPlacesInfo = localPlacesInfo;
     }
 
